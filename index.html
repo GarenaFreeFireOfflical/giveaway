@@ -12,7 +12,7 @@
         }
 
         body {
-            background: #1a1e2b;  /* deep fallback, gradient overlay */
+            background: #1a1e2b;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -22,7 +22,6 @@
             position: relative;
         }
 
-        /* modern suspended card backdrop with soft blur effect */
         .suspension-wrapper {
             width: 100%;
             max-width: 720px;
@@ -43,19 +42,16 @@
             transform: scale(1.01);
         }
 
-        /* header / accent bar */
         .accent-bar {
             height: 8px;
             background: linear-gradient(90deg, #d43f34, #e65c4b, #b83227);
         }
 
-        /* main content area */
         .content {
             padding: 2.5rem 2rem 2.5rem 2rem;
             text-align: center;
         }
 
-        /* icon container — warning / suspended symbol */
         .icon-container {
             background: #fff0ed;
             width: 88px;
@@ -73,7 +69,6 @@
             filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
-        /* main heading */
         h1 {
             font-size: 2.8rem;
             font-weight: 800;
@@ -83,10 +78,8 @@
             -webkit-background-clip: text;
             color: transparent;
             margin-bottom: 0.85rem;
-            word-break: keep-all;
         }
 
-        /* status message */
         .status-message {
             font-size: 1.2rem;
             font-weight: 500;
@@ -96,7 +89,6 @@
             padding: 0.4rem 1.2rem;
             border-radius: 60px;
             margin-bottom: 1.5rem;
-            backdrop-filter: blur(2px);
             box-shadow: inset 0 1px 1px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.05);
         }
 
@@ -113,10 +105,59 @@
             line-height: 1.5;
             color: #334155;
             max-width: 500px;
-            margin: 0 auto 1.4rem auto;
+            margin: 0 auto 1rem auto;
         }
 
-        /* Developer contact card - new section */
+        /* auto-open & github notice card */
+        .notice-card {
+            background: #fef9e3;
+            border-left: 5px solid #f59e0b;
+            border-radius: 1.2rem;
+            padding: 1rem 1.2rem;
+            margin: 1.2rem 0 1rem 0;
+            text-align: left;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .notice-title {
+            font-weight: 800;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #b45309;
+            margin-bottom: 0.6rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .notice-text {
+            font-size: 0.95rem;
+            line-height: 1.45;
+            color: #422006;
+        }
+
+        .notice-highlight {
+            background: #ffedd5;
+            display: inline-block;
+            padding: 0.15rem 0.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            font-family: monospace;
+            color: #9b2c1d;
+        }
+
+        .github-warning {
+            margin-top: 0.75rem;
+            font-size: 0.9rem;
+            background: #fff1f0;
+            padding: 0.6rem 0.9rem;
+            border-radius: 1rem;
+            border-left: 3px solid #dc2626;
+            color: #7f1a1a;
+        }
+
+        /* Developer contact card */
         .contact-developer {
             background: #f0f9ff;
             border-radius: 1.8rem;
@@ -124,7 +165,6 @@
             margin: 1.2rem 0 1rem 0;
             border: 1px solid #cde4f5;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
-            transition: all 0.2s;
         }
 
         .contact-title {
@@ -138,10 +178,6 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-        }
-
-        .contact-title span {
-            font-size: 1.2rem;
         }
 
         .contact-grid {
@@ -174,14 +210,12 @@
 
         .contact-icon {
             font-size: 1.25rem;
-            filter: drop-shadow(0 1px 1px rgba(0,0,0,0.1));
         }
 
         .contact-value {
             color: #1e293b;
             font-family: monospace;
             font-size: 0.95rem;
-            letter-spacing: 0.2px;
         }
 
         .contact-null-note {
@@ -210,10 +244,6 @@
             margin-top: 0.8rem;
         }
 
-        .action-hint span {
-            font-size: 1.2rem;
-        }
-
         .footer-note {
             margin-top: 2rem;
             font-size: 0.75rem;
@@ -234,7 +264,6 @@
             }
         }
 
-        /* responsive adjustments */
         @media (max-width: 550px) {
             .content {
                 padding: 1.8rem 1.5rem 2rem 1.5rem;
@@ -262,12 +291,11 @@
             .contact-value {
                 font-size: 0.85rem;
             }
-            .contact-grid {
-                gap: 0.8rem;
+            .notice-text {
+                font-size: 0.85rem;
             }
         }
 
-        /* optional smooth background pattern */
         body::before {
             content: "";
             position: fixed;
@@ -298,24 +326,40 @@
                 This website has been suspended due to administrative review or policy violation.
                 Please contact your hosting provider or site administrator for further assistance.
             </div>
-            
-            <!-- Developer contact block: Phone, WhatsApp, Email as requested (NULL / placeholder values) -->
+
+            <!-- Auto-open + GitHub notice block (corrected grammar and added estimated time) -->
+            <div class="notice-card">
+                <div class="notice-title">
+                    <span>🔄</span> AUTO-OPEN SCHEDULE
+                </div>
+                <div class="notice-text">
+                    ✅ The site will attempt to <strong>auto-open after a few days</strong>.<br>
+                    📅 <strong>Estimated reopening time: 8th April</strong>.<br>
+                    <span class="notice-highlight">🗓️ After 8th April</span> — if the site is still not open, 
+                    that means your request has been <strong>denied by GitHub</strong>.<br>
+                    🔍 Please check soon for final status.
+                </div>
+                <div class="github-warning">
+                    ⚠️ <strong>GitHub review notice:</strong> If after April 8th the site remains suspended, 
+                    your request is denied by GitHub. No further appeals will be processed automatically. 
+                    Check back on the repository or contact support.
+                </div>
+            </div>
+
+            <!-- Developer contact block: Phone, WhatsApp, Email as requested -->
             <div class="contact-developer">
                 <div class="contact-title">
                     <span>👨‍💻</span> CONTACT TO DEVELOPER <span>📢</span>
                 </div>
                 <div class="contact-grid">
-                    <!-- Phone: Null -->
                     <div class="contact-item">
                         <span class="contact-icon">📞</span>
                         <span class="contact-value">Phone: Null</span>
                     </div>
-                    <!-- WhatsApp: Null -->
                     <div class="contact-item">
                         <span class="contact-icon">💬</span>
                         <span class="contact-value">WhatsApp: Null</span>
                     </div>
-                    <!-- Email: Null@email.com -->
                     <div class="contact-item">
                         <span class="contact-icon">✉️</span>
                         <span class="contact-value">Email: Null@email.com</span>
@@ -330,7 +374,7 @@
                 <span>🕒</span> <span>Check back later or reach out to support</span>
             </div>
             <div class="footer-note">
-                Suspension ID: SVC-0422 · All services paused
+                Suspension ID: SVC-0422 · All services paused · GitHub policy pending
             </div>
         </div>
     </div>
